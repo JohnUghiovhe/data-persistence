@@ -40,7 +40,7 @@ type ProfileRow = {
 const app = express();
 const PORT = Number(process.env.PORT) || 3021;
 const REQUEST_TIMEOUT_MS = 5000;
-const DB_DIR = process.env.VERCEL ? "/tmp/data" : path.resolve(process.cwd(), "data");
+const DB_DIR = path.resolve(process.cwd(), "data");
 const DB_PATH = path.resolve(DB_DIR, "profiles.db");
 
 app.use(express.json());
@@ -429,11 +429,9 @@ const startServer = async (): Promise<void> => {
   });
 };
 
-if (!process.env.VERCEL) {
-  startServer().catch((error) => {
-    console.error("Failed to start server:", error);
-    process.exit(1);
-  });
-}
+startServer().catch((error) => {
+  console.error("Failed to start server:", error);
+  process.exit(1);
+});
 
 export default app;
