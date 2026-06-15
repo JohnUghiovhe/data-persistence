@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: insighta-labs-backend
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: GITHUB_BROWSER_CLIENT_ID
+        sync: false
+      - key: GITHUB_BROWSER_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_BROWSER_REDIRECT_URI
+        sync: false
+      - key: GITHUB_CLI_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLI_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_CLI_REDIRECT_URI
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_REDIRECT_URI
+        sync: false
